@@ -1,0 +1,89 @@
+Step: build-step-credential-initializer-kjs58:
+
+{"level":"warn","ts":1556052000.2928753,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/backport-container-name-fix\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1556052000.2932281,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Step: build-step-git-source-**-workshop-**-go-http-pr-1-ser-gv4hs:
+
+{"level":"warn","ts":1556052001.3292506,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/backport-container-name-fix\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1556052002.9765015,"logger":"fallback-logger","caller":"git-init/main.go:99","msg":"Successfully cloned \"https://github.com/**-workshop/**-go-http\" @ \"dd6483cf99a3d64e732ef8660aa3184e293b53de\" in path \"/workspace/source\""}
+Step: build-step-place-tools:
+
+Step: build-step-git-merge:
+
+Warning failed to load version: failed to parse version -dev+9e73adc0b: No Major.Minor.Patch elements found
+time="2019-04-23T20:40:06Z" level=info msg="got "
+Using SHAs from PULL_REFS=master:75c45040ce264f46952d90adcd7ca4bfe1279eb0,1:dd6483cf99a3d64e732ef8660aa3184e293b53de
+ran git fetch --unshallow origin dd6483cf99a3d64e732ef8660aa3184e293b53de: 75c45040ce264f46952d90adcd7ca4bfe1279eb0: in 
+ran git checkout master in 
+ran git reset --hard 75c45040ce264f46952d90adcd7ca4bfe1279eb0 in 
+ran clean --force -d . in 
+ran git merge dd6483cf99a3d64e732ef8660aa3184e293b53de in 
+Step: build-step-build-make-linux:
+
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO15VENDOREXPERIMENT=1 go build -ldflags '' -o bin/**-go-http main.go
+Step: build-step-build-container-build:
+
+[36mINFO[0m[0000] No base image, nothing to extract            
+[36mINFO[0m[0000] cmd: EXPOSE                                  
+[36mINFO[0m[0000] Adding exposed port: 8080/tcp                
+[36mINFO[0m[0000] Using files from context: [/workspace/source/bin] 
+[36mINFO[0m[0000] Skipping unpacking as no commands require it. 
+[36mINFO[0m[0000] Taking snapshot of full filesystem...        
+[36mINFO[0m[0000] EXPOSE 8080                                  
+[36mINFO[0m[0000] cmd: EXPOSE                                  
+[36mINFO[0m[0000] Adding exposed port: 8080/tcp                
+[36mINFO[0m[0000] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0000] ENTRYPOINT ["/**-go-http"]                   
+[36mINFO[0m[0000] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0000] Using files from context: [/workspace/source/bin] 
+[36mINFO[0m[0000] COPY ./bin/ /                                
+[36mINFO[0m[0000] Taking snapshot of files...                  
+ERROR: logging before flag.Parse: E0423 20:40:15.718160      13 metadata.go:142] while reading 'google-dockercfg' metadata: http status code: 404 while fetching url http://metadata.google.internal./computeMetadata/v1/instance/attributes/google-dockercfg
+ERROR: logging before flag.Parse: E0423 20:40:15.721911      13 metadata.go:159] while reading 'google-dockercfg-url' metadata: http status code: 404 while fetching url http://metadata.google.internal./computeMetadata/v1/instance/attributes/google-dockercfg-url
+2019/04/23 20:40:15 pushed blob: sha256:0f0b3200565509445e03975dc8c39696cf302b9bd7833513642719ecb1235365
+2019/04/23 20:40:16 pushed blob: sha256:f999576dc74cad33ebde2f2cb9bee0997b98dbd9b3560b21b08f2c78336cbe81
+2019/04/23 20:40:16 10.7.254.90:5000/**-workshop/**-go-http:0.0.0-SNAPSHOT-PR-1-1: digest: sha256:d7f91f1505ad9966181451fe2f1d4ab6d243aedd1b0abf6fbc47bdfedc22b6e0 size: 428
+Step: build-step-postbuild-post-build:
+
+{"level":"info","msg":"no CVE provider running in the current ** namespace so skip adding image to be analysed","time":"2019-04-23T20:40:17Z"}
+Step: build-step-promote-make-preview:
+
+sed -i -e "s/version:.*/version: 0.0.0-SNAPSHOT-PR-1-1/" Chart.yaml
+sed -i -e "s/version:.*/version: 0.0.0-SNAPSHOT-PR-1-1/" ../*/Chart.yaml
+sed -i -e "s|repository:.*|repository: 10.7.254.90:5000\/**-workshop\/**-go-http|" values.yaml
+sed -i -e "s/tag:.*/tag: 0.0.0-SNAPSHOT-PR-1-1/" values.yaml
+echo "  version: 0.0.0-SNAPSHOT-PR-1-1" >> requirements.yaml
+** step helm build
+{"level":"warning","msg":"No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080\n","time":"2019-04-23T20:40:18Z"}
+{"level":"info","msg":"Adding missing Helm repo: chartmuseum.jenkins-x.io http://chartmuseum.jenkins-x.io\n","time":"2019-04-23T20:40:19Z"}
+{"level":"info","msg":"Successfully added Helm repository chartmuseum.jenkins-x.io.\n","time":"2019-04-23T20:40:20Z"}
+{"level":"info","msg":"Adding missing Helm repo: jenkins-x-chartmuseum http://jenkins-x-chartmuseum:8080\n","time":"2019-04-23T20:40:21Z"}
+{"level":"info","msg":"Successfully added Helm repository jenkins-x-chartmuseum.\n","time":"2019-04-23T20:40:21Z"}
+Step: build-step-promote-**-preview:
+
+{"level":"info","msg":"Creating a preview","time":"2019-04-23T20:40:28Z"}
+{"level":"warning","msg":"No author for commit: dd6483cf99a3d64e732ef8660aa3184e293b53de\n","time":"2019-04-23T20:40:30Z"}
+{"level":"info","msg":"Created environment **-workshop-**-go-http-pr-1\n","time":"2019-04-23T20:40:30Z"}
+{"level":"info","msg":"Namespace **-**-workshop-**-go-http-pr-1 created \n ","time":"2019-04-23T20:40:30Z"}
+{"level":"info","msg":"expose:\n  Annotations:\n    helm.sh/hook: post-install,post-upgrade\n    helm.sh/hook-delete-policy: hook-succeeded\n  config:\n    domain: 35.245.154.108.nip.io\n    exposer: Ingress\n    http: \"true\"\npreview:\n  image:\n    repository: 10.7.254.90:5000/**-workshop/**-go-http\n    tag: 0.0.0-SNAPSHOT-PR-1-1\n","time":"2019-04-23T20:40:31Z"}
+{"level":"info","msg":"Deleting and cloning the Jenkins X versions repo","time":"2019-04-23T20:40:32Z"}
+{"level":"info","msg":"Cloning the Jenkins X versions repo https://github.com/jenkins-x/jenkins-x-versions.git with ref refs/heads/master to /builder/home/.**/jenkins-x-versions\n","time":"2019-04-23T20:40:32Z"}
+Enumerating objects: 148, done.
+Counting objects:   0% (1/148)   Counting objects:   1% (2/148)   Counting objects:   2% (3/148)   Counting objects:   3% (5/148)   Counting objects:   4% (6/148)   Counting objects:   5% (8/148)   Counting objects:   6% (9/148)   Counting objects:   7% (11/148)   Counting objects:   8% (12/148)   Counting objects:   9% (14/148)   Counting objects:  10% (15/148)   Counting objects:  11% (17/148)   Counting objects:  12% (18/148)   Counting objects:  13% (20/148)   Counting objects:  14% (21/148)   Counting objects:  15% (23/148)   Counting objects:  16% (24/148)   Counting objects:  17% (26/148)   Counting objects:  18% (27/148)   Counting objects:  19% (29/148)   Counting objects:  20% (30/148)   Counting objects:  21% (32/148)   Counting objects:  22% (33/148)   Counting objects:  23% (35/148)   Counting objects:  24% (36/148)   Counting objects:  25% (37/148)   Counting objects:  26% (39/148)   Counting objects:  27% (40/148)   Counting objects:  28% (42/148)   Counting objects:  29% (43/148)   Counting objects:  30% (45/148)   Counting objects:  31% (46/148)   Counting objects:  32% (48/148)   Counting objects:  33% (49/148)   Counting objects:  34% (51/148)   Counting objects:  35% (52/148)   Counting objects:  36% (54/148)   Counting objects:  37% (55/148)   Counting objects:  38% (57/148)   Counting objects:  39% (58/148)   Counting objects:  40% (60/148)   Counting objects:  41% (61/148)   Counting objects:  42% (63/148)   Counting objects:  43% (64/148)   Counting objects:  44% (66/148)   Counting objects:  45% (67/148)   Counting objects:  46% (69/148)   Counting objects:  47% (70/148)   Counting objects:  48% (72/148)   Counting objects:  49% (73/148)   Counting objects:  50% (74/148)   Counting objects:  51% (76/148)   Counting objects:  52% (77/148)   Counting objects:  53% (79/148)   Counting objects:  54% (80/148)   Counting objects:  55% (82/148)   Counting objects:  56% (83/148)   Counting objects:  57% (85/148)   Counting objects:  58% (86/148)   Counting objects:  59% (88/148)   Counting objects:  60% (89/148)   Counting objects:  61% (91/148)   Counting objects:  62% (92/148)   Counting objects:  63% (94/148)   Counting objects:  64% (95/148)   Counting objects:  65% (97/148)   Counting objects:  66% (98/148)   Counting objects:  67% (100/148)   Counting objects:  68% (101/148)   Counting objects:  69% (103/148)   Counting objects:  70% (104/148)   Counting objects:  71% (106/148)   Counting objects:  72% (107/148)   Counting objects:  73% (109/148)   Counting objects:  74% (110/148)   Counting objects:  75% (111/148)   Counting objects:  76% (113/148)   Counting objects:  77% (114/148)   Counting objects:  78% (116/148)   Counting objects:  79% (117/148)   Counting objects:  80% (119/148)   Counting objects:  81% (120/148)   Counting objects:  82% (122/148)   Counting objects:  83% (123/148)   Counting objects:  84% (125/148)   Counting objects:  85% (126/148)   Counting objects:  86% (128/148)   Counting objects:  87% (129/148)   Counting objects:  88% (131/148)   Counting objects:  89% (132/148)   Counting objects:  90% (134/148)   Counting objects:  91% (135/148)   Counting objects:  92% (137/148)   Counting objects:  93% (138/148)   Counting objects:  94% (140/148)   Counting objects:  95% (141/148)   Counting objects:  96% (143/148)   Counting objects:  97% (144/148)   Counting objects:  98% (146/148)   Counting objects:  99% (147/148)   Counting objects: 100% (148/148)   Counting objects: 100% (148/148), done.
+Compressing objects:   1% (1/76)   Compressing objects:   2% (2/76)   Compressing objects:   3% (3/76)   Compressing objects:   5% (4/76)   Compressing objects:   6% (5/76)   Compressing objects:   7% (6/76)   Compressing objects:   9% (7/76)   Compressing objects:  10% (8/76)   Compressing objects:  11% (9/76)   Compressing objects:  13% (10/76)   Compressing objects:  14% (11/76)   Compressing objects:  15% (12/76)   Compressing objects:  17% (13/76)   Compressing objects:  18% (14/76)   Compressing objects:  19% (15/76)   Compressing objects:  21% (16/76)   Compressing objects:  22% (17/76)   Compressing objects:  23% (18/76)   Compressing objects:  25% (19/76)   Compressing objects:  26% (20/76)   Compressing objects:  27% (21/76)   Compressing objects:  28% (22/76)   Compressing objects:  30% (23/76)   Compressing objects:  31% (24/76)   Compressing objects:  32% (25/76)   Compressing objects:  34% (26/76)   Compressing objects:  35% (27/76)   Compressing objects:  36% (28/76)   Compressing objects:  38% (29/76)   Compressing objects:  39% (30/76)   Compressing objects:  40% (31/76)   Compressing objects:  42% (32/76)   Compressing objects:  43% (33/76)   Compressing objects:  44% (34/76)   Compressing objects:  46% (35/76)   Compressing objects:  47% (36/76)   Compressing objects:  48% (37/76)   Compressing objects:  50% (38/76)   Compressing objects:  51% (39/76)   Compressing objects:  52% (40/76)   Compressing objects:  53% (41/76)   Compressing objects:  55% (42/76)   Compressing objects:  56% (43/76)   Compressing objects:  57% (44/76)   Compressing objects:  59% (45/76)   Compressing objects:  60% (46/76)   Compressing objects:  61% (47/76)   Compressing objects:  63% (48/76)   Compressing objects:  64% (49/76)   Compressing objects:  65% (50/76)   Compressing objects:  67% (51/76)   Compressing objects:  68% (52/76)   Compressing objects:  69% (53/76)   Compressing objects:  71% (54/76)   Compressing objects:  72% (55/76)   Compressing objects:  73% (56/76)   Compressing objects:  75% (57/76)   Compressing objects:  76% (58/76)   Compressing objects:  77% (59/76)   Compressing objects:  78% (60/76)   Compressing objects:  80% (61/76)   Compressing objects:  81% (62/76)   Compressing objects:  82% (63/76)   Compressing objects:  84% (64/76)   Compressing objects:  85% (65/76)   Compressing objects:  86% (66/76)   Compressing objects:  88% (67/76)   Compressing objects:  89% (68/76)   Compressing objects:  90% (69/76)   Compressing objects:  92% (70/76)   Compressing objects:  93% (71/76)   Compressing objects:  94% (72/76)   Compressing objects:  96% (73/76)   Compressing objects:  97% (74/76)   Compressing objects:  98% (75/76)   Compressing objects: 100% (76/76)   Compressing objects: 100% (76/76), done.
+Total 1041 (delta 68), reused 133 (delta 59), pack-reused 893
+{"level":"warning","msg":"could not find a stable version from charts of . from /builder/home/.**/jenkins-x-versions\nFor background see: https://jenkins-x.io/architecture/version-stream/\n","time":"2019-04-23T20:40:32Z"}
+{"level":"info","msg":"Please lock this version down via the command: ** step create version pr -k charts -n .\n\n","time":"2019-04-23T20:40:32Z"}
+{"level":"info","msg":"Applying generated chart . YAML via kubectl in dir: /tmp/helm-template-workdir-008511225/preview/output\n","time":"2019-04-23T20:40:33Z"}
+{"level":"info","msg":"role.rbac.authorization.k8s.io/cleanup created\nrolebinding.rbac.authorization.k8s.io/cleanup created\nserviceaccount/cleanup created\nconfigmap/exposecontroller created\nrole.rbac.authorization.k8s.io/expose created\nrolebinding.rbac.authorization.k8s.io/expose created\nserviceaccount/expose created\ndeployment.extensions/preview-preview created\nservice/**-go-http created\n","time":"2019-04-23T20:40:33Z"}
+{"level":"info","msg":"\n","time":"2019-04-23T20:40:33Z"}
+{"level":"info","msg":"Applying Helm hook post-upgrade YAML via kubectl in file: /tmp/helm-template-workdir-008511225/preview/helmHooks/preview/charts/expose/templates/job.yaml\n","time":"2019-04-23T20:40:33Z"}
+{"level":"info","msg":"job.batch/expose created\n","time":"2019-04-23T20:40:33Z"}
+{"level":"info","msg":"\n","time":"2019-04-23T20:40:33Z"}
+{"level":"info","msg":"Waiting for helm post-upgrade hook Job expose to complete before removing it\n","time":"2019-04-23T20:40:33Z"}
+{"level":"info","msg":"Deleting helm hook sources from file: /tmp/helm-template-workdir-008511225/preview/helmHooks/preview/charts/expose/templates/job.yaml\n","time":"2019-04-23T20:40:41Z"}
+{"level":"info","msg":"job.batch \"expose\" deleted\n","time":"2019-04-23T20:40:41Z"}
+{"level":"info","msg":"Removing Kubernetes resources from older releases using selector: jenkins.io/chart-release=preview,jenkins.io/version!=0.0.0-SNAPSHOT-PR-1-1 from all pvc configmap release sa role rolebinding secret\n","time":"2019-04-23T20:40:41Z"}
+{"level":"info","msg":"Removing Kubernetes resources from older releases using selector: jenkins.io/chart-release=preview,jenkins.io/version!=0.0.0-SNAPSHOT-PR-1-1,jenkins.io/namespace=**-**-workshop-**-go-http-pr-1 from clusterrole clusterrolebinding\n","time":"2019-04-23T20:40:42Z"}
+{"level":"info","msg":"Updating PipelineActivities **-workshop-**-go-http-pr-1-1 which has status Running\n","time":"2019-04-23T20:40:42Z"}
+{"level":"info","msg":"Preview application is now available at: http://**-go-http.**-**-workshop-**-go-http-pr-1.35.245.154.108.nip.io\n\n","time":"2019-04-23T20:40:42Z"}
