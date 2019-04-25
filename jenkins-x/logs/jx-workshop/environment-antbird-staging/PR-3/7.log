@@ -1,0 +1,27 @@
+Step: build-step-credential-initializer-dntf2:
+
+{"level":"warn","ts":1556224484.0587063,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/backport-container-name-fix\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1556224484.0591464,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Step: build-step-git-source-**-workshop-environment-antbird-xcj29:
+
+{"level":"warn","ts":1556224485.119947,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/backport-container-name-fix\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1556224485.287887,"logger":"fallback-logger","caller":"git-init/main.go:99","msg":"Successfully cloned \"https://github.com/**-workshop/environment-antbird-staging\" @ \"32f64fe278b08a5eb7710ce638a3e29737f60976\" in path \"/workspace/source\""}
+Step: build-step-place-tools:
+
+Step: build-step-git-merge:
+
+Warning failed to load version: failed to parse version -dev+9e73adc0b: No Major.Minor.Patch elements found
+time="2019-04-25T20:34:47Z" level=info msg="got "
+Using SHAs from PULL_REFS=master:4e5dd5256cf9949591b4b8c703e321892a9bbf3a,3:32f64fe278b08a5eb7710ce638a3e29737f60976
+ran git fetch --unshallow origin 32f64fe278b08a5eb7710ce638a3e29737f60976: 4e5dd5256cf9949591b4b8c703e321892a9bbf3a: in 
+ran git checkout master in 
+ran git reset --hard 4e5dd5256cf9949591b4b8c703e321892a9bbf3a in 
+ran clean --force -d . in 
+ran git merge 32f64fe278b08a5eb7710ce638a3e29737f60976 in 
+Step: build-step-build-helm-build:
+
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Adding missing Helm repo: chartmuseum.jenkins-x.io http://chartmuseum.jenkins-x.io
+Successfully added Helm repository chartmuseum.jenkins-x.io.
+Adding missing Helm repo: jenkins-x-chartmuseum http://jenkins-x-chartmuseum:8080
+Successfully added Helm repository jenkins-x-chartmuseum.
